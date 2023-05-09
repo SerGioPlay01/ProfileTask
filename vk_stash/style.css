@@ -1,0 +1,54 @@
+body {
+    display: flexbox;
+    background-image: url(resources/1647497061_1-abrakadabra-fun-p-bashnya-zamka-4.jpg);
+}
+
+#booking_form {
+    max-width: 70cqw;
+    background-color: #f2f2f25d;
+    backdrop-filter: blur(10px);
+    padding: 50px;
+    margin: 7% auto;
+    font-family: Arial, sans-serif;
+    border-radius: 10px;
+    border: 1px solid #ffffff;
+    box-shadow:  1px 1px 5px #f0f0f03f,
+                    -1px -1px 5px #f0f0f03f;
+  }
+  
+  label {
+    line-height: 2rem;
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  select,
+  input[type="date"],
+  textarea {
+    outline: none;
+    background-color: #ffffff59;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ffffff;
+    margin-bottom: 20px;
+    width: 95%;
+    font-size: 16px;
+  }
+  
+  button[type="submit"],
+  button[type="button"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    background-color: #333;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  button[type="submit"]:hover,
+  button[type="button"]:hover {
+    background-color: #555;
+  }
+  

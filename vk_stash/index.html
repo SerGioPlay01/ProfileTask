@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="/style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="booking_form" action="">
+        <label for="tower_select">Выберите башню:</label>
+        <select  id="tower_select">
+            <option value="A">Башня А</option>
+            <option value="B">Башня Б</option>
+        </select>
+        <br>
+        <label for="floor_select">Выберите этаж:</label>
+        <select  id="floor_select">
+            <option value="3">Этаж 3</option>
+            <option value="4">Этаж 4</option>
+            <option value="5">Этаж 5</option>
+            <option value="6">Этаж 6</option>
+            <option value="7">Этаж 7</option>
+            <option value="8">Этаж 8</option>
+            <option value="9">Этаж 9</option>
+            <option value="10">Этаж 10</option>
+            <option value="11">Этаж 11</option>
+            <option value="12">Этаж 12</option>
+            <option value="13">Этаж 13</option>
+            <option value="14">Этаж 14</option>
+            <option value="15">Этаж 15</option>
+            <option value="16">Этаж 16</option>
+            <option value="17">Этаж 17</option>
+            <option value="18">Этаж 18</option>
+            <option value="19">Этаж 19</option>
+            <option value="20">Этаж 20</option>
+            <option value="21">Этаж 21</option>
+            <option value="22">Этаж 22</option>
+            <option value="23">Этаж 23</option>
+            <option value="24">Этаж 24</option>
+            <option value="25">Этаж 25</option>
+            <option value="26">Этаж 26</option>
+            <option value="27">Этаж 27</option>
+        </select>
+        <br>
+        <label for="room_select">Выберите переговорку:</label>
+        <select  id="room_select"></select>
+        <br>
+        <label for="date_select">Выберите дату:</label>
+        <input type="date" name="" id="date_select">
+        <br>
+        <label for="time_select">Выберите время:</label>
+        <select  id="time_select">
+            <option value="9:00">9:00</option>
+            <option value="9:30">9:30</option>
+            <option value="10:00">10:00</option>
+            <!---->
+            <option value="17:30">17:30</option>
+        </select>
+        <br>
+        <label for="comment_input">Комментарий</label>
+        <br>
+        <textarea  id="comment_input"></textarea>
+        <br>    
+        <button type="submit">Отправить</button>
+        <button type="button" id="clear_button">Очистить</button>
+    </form>
+
+    <script>
+     const towerSelect = document.getElementById("tower_select");
+        const floorSelect = document.getElementById("floor_select");
+        const roomSelect = document.getElementById("room_select");
+        const dateSelect = document.getElementById("date_select");
+        const timeSelect = document.getElementById("time_select");
+        const commentInput = document.getElementById("comment_input");
+        const clearBtn = document.getElementById("clear_button");
+        const bookingForm = document.getElementById("booking_form");
+
+        // Создаем объект с данными формы и выводим его в консоль при отправке формы
+        bookingForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const formData = {
+                tower: towerSelect.value,
+                floor: floorSelect.value,
+                room: roomSelect.value,
+                date: dateSelect.value,
+                time: timeSelect.value,
+                comment: commentInput.value,
+            };
+
+            console.log(JSON.stringify(formData));
+        });
+
+        // Заполняем список переговорок в зависимости от выбранного этажа
+        floorSelect.addEventListener('change', () => {
+            const floor = floorSelect.value;
+
+            // Очищаем список переговорок
+            while (roomSelect.firstChild) {
+                roomSelect.removeChild(roomSelect.firstChild);
+            }
+
+            // Заполняем список переговорок на этаже
+            for (let i = 1; i <= 10; i++) {
+                let roomNumber = floor * 10 + i;
+                const option = document.createElement('option');
+                option.value = roomNumber;
+                option.textContent = "Переговорка" + " " + roomNumber;
+                roomSelect.appendChild(option);
+            }
+        });
+
+        // Очищаем форму при нажатии на кнопку "Очистить"
+        clearBtn.addEventListener('click', () => {
+            towerSelect.value = 'A';
+            floorSelect.value = '3';
+            while (roomSelect.firstChild) {
+                roomSelect.removeChild(roomSelect.firstChild);
+            }
+
+            dateSelect.value = "";
+            timeSelect.value = '9:00';
+            commentInput.value = "";
+
+            console.clear();
+        });
+
+
+
+        // Заполняем список переговорок при загрузке страницы
+        window.addEventListener('load', () => {
+            floorSelect.dispatchEvent(new Event('change'));
+        });
+
+    </script>
+</body>
+</html>
